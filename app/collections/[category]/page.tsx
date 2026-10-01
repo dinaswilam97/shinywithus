@@ -1,80 +1,56 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SectionHead } from "@/components/SectionHead";
-import { ProductCard } from "@/components/ProductCard";
-import {
-  getCategoryMeta,
-  getProductsByCategory,
-  getSaleProducts,
-  getSectionProducts,
-  type Product,
-  type Section,
-} from "@/data/products";
-
-const SECTION_META: Record<Section, { eyebrow: string; title: string }> = {
-  bestsellers: { eyebrow: "الأكتر مبيعًا", title: "مختارات الأسبوع" },
-  "new-arrivals": { eyebrow: "وصل حديثًا", title: "أحدث المنتجات" },
-  "clothing-spotlight": { eyebrow: "قسم جديد", title: "ملابس وإكسسوارات" },
-};
-
-const SALE_META = { eyebrow: "عروض", title: "تخفيضات" };
-
-function resolveProducts(slug: string): Product[] | null {
-  if (slug === "sale") return getSaleProducts();
-  if (slug in SECTION_META) return getSectionProducts(slug as Section);
-  if (getCategoryMeta(slug)) return getProductsByCategory(slug);
-  return null;
-}
-
-function resolveTitle(slug: string): string | null {
-  if (slug === "sale") return SALE_META.title;
-  if (slug in SECTION_META) return SECTION_META[slug as Section].title;
-  return getCategoryMeta(slug)?.name ?? null;
-}
+import { ProductGrid } from "@/components/ProductGrid";
+import { CATEGORIES, getCategoryMeta } from "@/data/categories";
+import { getProductsByCategory } from "@/data/catalog";
 
 type Props = { params: Promise<{ category: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
-  const title = resolveTitle(category);
-  if (!title) return { title: "shinywithus | Fashion & Beauty" };
-  return { title: `${title} | shinywithus` };
+  const meta = getCategoryMeta(category);
+  if (!meta) return { title: "shinywithus | Fashion & Beauty" };
+  return { title: `${meta.name} | shinywithus` };
 }
 
 export default async function CollectionPage({ params }: Props) {
   const { category } = await params;
-  const products = resolveProducts(category);
-  const title = resolveTitle(category);
+  const meta = getCategoryMeta(category);
+  if (!meta) notFound();
 
-  if (!products || !title) notFound();
-
-  const eyebrow =
-    category === "sale"
-      ? SALE_META.eyebrow
-      : category in SECTION_META
-        ? SECTION_META[category as Section].eyebrow
-        : "تسوقي حسب";
+  const products = getProductsByCategory(category);
 
   return (
     <div className="wrap">
       <div className="crumbs">
         <Link href="/">الرئيسية</Link>
         <span className="sep">/</span>
-        <span>{title}</span>
+        <span>{meta.name}</span>
       </div>
 
-      <section className="block" style={{ paddingTop: 0 }}>
-        <SectionHead eyebrow={eyebrow} title={title} />
-        <p className="collection-count">
-          {products.length} منتج
-        </p>
-        <div className="product-grid">
-          {products.map((p) => (
-            <ProductCard key={p.id} product={p} />
+      <div className="collection-head">
+        <h1>{meta.name}</h1>
+        <span className="collection-count">{products.length} منتج</span>
+      </div>
+
+      {/* Sticky chip row — categories stay reachable while scrolling the grid. */}
+      <div className="filter-bar">
+        <div className="filter-chips">
+          {CATEGORIES.map((c) => (
+            <Link
+              key={c.slug}
+              href={`/collections/${c.slug}`}
+              className={`chip ${c.slug === category ? "active" : ""}`}
+              aria-current={c.slug === category ? "page" : undefined}
+            >
+              {c.name}
+            </Link>
           ))}
         </div>
-      </section>
+      </div>
+
+      <ProductGrid products={products} priorityCount={6} />
     </div>
   );
 }

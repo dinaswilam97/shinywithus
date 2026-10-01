@@ -1,21 +1,13 @@
 import Link from "next/link";
+import { CATEGORIES } from "@/data/categories";
 
 const COLUMNS = [
   {
-    title: "ملابس",
-    links: [
-      { label: "حريمي", href: "/collections/clothing-women" },
-      { label: "رجالي", href: "/collections/clothing-men" },
-      { label: "شنط وأحذية", href: "/collections/bags" },
-    ],
-  },
-  {
-    title: "جمال",
-    links: [
-      { label: "المكياج", href: "/collections/makeup" },
-      { label: "العناية بالبشرة", href: "/collections/skincare" },
-      { label: "العطور", href: "/collections/fragrance" },
-    ],
+    title: "الأقسام",
+    links: CATEGORIES.map((c) => ({
+      label: c.name,
+      href: `/collections/${c.slug}`,
+    })),
   },
   {
     title: "معلومات",
@@ -42,8 +34,8 @@ export function Footer() {
           <div>
             <div className="foot-logo">shinywithus</div>
             <p>
-              متجرك الموثوق للأزياء ومستحضرات التجميل والعناية بالبشرة، بخبرة
-              توصيل لكل محافظات مصر.
+              ShinyWithUs - أفضل مستحضرات التجميل والمكياج الأصلي، توصلك لحد
+              باب بيتك بخدمة الدفع عند الاستلام
             </p>
           </div>
           {COLUMNS.map((col) => (

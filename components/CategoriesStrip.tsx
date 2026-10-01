@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icon } from "./Icons";
-import { CATEGORIES } from "@/data/products";
+import { CATEGORIES } from "@/data/categories";
 
 export function CategoriesStrip() {
   return (

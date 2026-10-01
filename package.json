@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:golden": "node scripts/test-golden.ts",
+    "generate:data": "node scripts/generate-products-data.ts",
+    "optimize:images": "node scripts/optimize-images.ts",
+    "verify:images": "node scripts/verify-product-images.ts",
+    "feature:csv": "node scripts/add-featured-column.ts"
   },
   "dependencies": {
     "next": "16.3.1",
@@ -20,6 +25,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.1",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -5,14 +5,10 @@ export function PromoBanner() {
     <div className="promo-banner">
       <div className="sweep" aria-hidden="true" />
       <div>
-        <h3>كولكشن الملابس الجديد</h3>
-        <p>
-          قطع حصرية بقصات عصرية وخامات مريحة — من الكاجوال اليومي للإطلالات
-          المسائية.
-        </p>
+        <h3>اعتني ببشرتك مع تشكيلة العناية والمكياج للوجه</h3>
       </div>
-      <Link className="btn-solid" href="/collections/clothing-spotlight">
-        اكتشفي الكولكشن
+      <Link className="btn-solid" href="/collections/face">
+        تسوقي قسم البشرة
       </Link>
     </div>
   );

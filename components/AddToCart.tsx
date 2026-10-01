@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { Icon } from "./Icons";
 import { useCart } from "@/context/CartContext";
-import type { Product } from "@/data/products";
+import type { Product, ProductColor } from "@/types/product";
 
-export function AddToCart({ product }: { product: Product }) {
+/**
+ * Quantity picker + add-to-cart button. The color variant is chosen by the product page swatch row
+ * (see ProductDetail) and passed in, so the gallery, the swatches and the cart always agree.
+ */
+export function AddToCart({ product, color }: { product: Product; color: ProductColor }) {
   const { addItem } = useCart();
-  const [size, setSize] = useState<string | undefined>(product.sizes?.[0]);
-  const [color, setColor] = useState<string | undefined>(product.colors?.[0]);
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
@@ -16,12 +18,12 @@ export function AddToCart({ product }: { product: Product }) {
     addItem({
       slug: product.slug,
       name: product.name,
-      brand: product.brand,
       price: product.price,
-      icon: product.icon,
-      size,
-      color,
       qty,
+      color: { name: color.name, slug: color.slug },
+      ...(product.brand ? { brand: product.brand } : {}),
+      ...(product.size ? { size: product.size } : {}),
+      ...(color.images[0] ? { image: color.images[0] } : {}),
     });
     setAdded(true);
     window.setTimeout(() => setAdded(false), 2200);
@@ -29,45 +31,7 @@ export function AddToCart({ product }: { product: Product }) {
 
   return (
     <>
-      {product.sizes && product.sizes.length > 0 && (
-        <>
-          <div className="opt-label">المقاس</div>
-          <div className="opt-row" role="radiogroup" aria-label="المقاس">
-            {product.sizes.map((s) => (
-              <button
-                key={s}
-                type="button"
-                role="radio"
-                aria-checked={size === s}
-                className={`opt-btn ${size === s ? "active" : ""}`}
-                onClick={() => setSize(s)}
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-
-      {product.colors && product.colors.length > 0 && (
-        <>
-          <div className="opt-label">اللون</div>
-          <div className="opt-row" role="radiogroup" aria-label="اللون">
-            {product.colors.map((c) => (
-              <button
-                key={c}
-                type="button"
-                role="radio"
-                aria-checked={color === c}
-                className={`opt-btn ${color === c ? "active" : ""}`}
-                onClick={() => setColor(c)}
-              >
-                {c}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
+      {product.size && <div className="opt-label">الحجم: {product.size}</div>}
 
       <div className="opt-label">الكمية</div>
       <div className="qty-row">

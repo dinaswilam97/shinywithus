@@ -22,6 +22,8 @@
   --mid: #8c8c88;
   --radius: 0px;
   --shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.35);
+  /* Header height (icon-btn 40px + 20px padding each side) — sticky offsets hang off this. */
+  --header-h: 80px;
 }
 
 * {
@@ -196,8 +198,8 @@ nav.mainnav a:hover::after {
   gap: 16px;
 }
 .icon-btn {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -388,11 +390,11 @@ section.block {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 38px;
+  margin-bottom: 22px;
   gap: 20px;
   flex-wrap: wrap;
   border-bottom: 1px solid var(--line);
-  padding-bottom: 20px;
+  padding-bottom: 14px;
 }
 .block-head .eyebrow {
   display: block;
@@ -404,7 +406,7 @@ section.block {
   margin-bottom: 8px;
 }
 .block-head h2 {
-  font-size: clamp(24px, 3vw, 34px);
+  font-size: clamp(20px, 2.4vw, 28px);
 }
 .see-all {
   font-size: 13px;
@@ -416,7 +418,7 @@ section.block {
   white-space: nowrap;
 }
 .block[id] {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 116px;
 }
 
 /* ===== Category strip ===== */
@@ -432,8 +434,9 @@ section.block {
   display: none;
 }
 .cat-item {
-  flex: 0 0 auto;
-  width: 150px;
+  /* Grow to share the row evenly; never shrink below 150px so extra categories scroll. */
+  flex: 1 0 150px;
+  width: auto;
   text-align: center;
   cursor: pointer;
   border-left: 1px solid var(--line);
@@ -483,20 +486,94 @@ section.block {
   box-shadow: var(--shadow);
   z-index: 2;
 }
-.card-link {
-  display: block;
-}
 .card-media {
   aspect-ratio: 3/4;
   position: relative;
   background: var(--off);
+  overflow: hidden;
+}
+.card-media-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+}
+.card-media img {
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.card:hover .card-media img {
+  transform: scale(1.04);
+}
+.media-fallback {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  color: var(--mid);
 }
-.card:hover .card-media .sweep-sm {
+/* Quick add-to-cart: hover-revealed on desktop, always visible on touch / narrow screens. */
+.quick-add {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--line);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s, color 0.18s;
+  pointer-events: none;
+}
+.card:hover .quick-add,
+.card:focus-within .quick-add {
   opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.quick-add.done {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+@media (hover: none), (max-width: 980px) {
+  .quick-add {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+.card-toast {
+  position: absolute;
+  bottom: 58px;
+  left: 10px;
+  z-index: 4;
+  background: var(--black);
+  color: var(--white);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 10px;
+  white-space: nowrap;
+  animation: toastIn 0.2s ease;
+}
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 .sweep-sm {
   position: absolute;
@@ -512,6 +589,7 @@ section.block {
   position: absolute;
   top: 12px;
   right: 12px;
+  z-index: 2;
   background: var(--black);
   color: var(--white);
   font-size: 10.5px;
@@ -539,35 +617,83 @@ section.block {
   color: var(--white);
 }
 .card-body {
-  padding: 18px 18px 20px;
+  padding: 10px 10px 14px;
 }
 .card-brand {
-  font-size: 10.5px;
-  letter-spacing: 1.5px;
+  font-size: 9.5px;
+  letter-spacing: 1.2px;
   color: var(--mid);
   font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
+/* Name stays small/secondary; clamped to two lines so grid rows stay even. */
 .card-name {
-  font-size: 14.5px;
-  font-weight: 700;
-  color: var(--black);
-  margin-bottom: 10px;
-  line-height: 1.4;
-  min-height: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+  min-height: 2.9em;
+  margin-bottom: 6px;
 }
 .card-price {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: baseline;
+  gap: 6px;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 17px;
+  margin-bottom: 9px;
 }
 .card-price del {
   font-weight: 400;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--mid);
+}
+/* Swatches — shared with the product page, sized by their container. */
+.swatch {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  padding: 0;
+  background: var(--off);
+  border: 1px solid var(--line);
+}
+.swatch img {
+  object-fit: cover;
+}
+.swatch.active {
+  border-color: var(--black);
+  box-shadow: inset 0 0 0 1px var(--black);
+}
+.card-swatches {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.card-swatches .swatch {
+  width: 32px;
+  height: 40px;
+}
+.swatch-more {
+  height: 40px;
+  min-width: 28px;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--line);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--mid);
+}
+.swatch-more:hover {
+  border-color: var(--black);
+  color: var(--black);
 }
 
 /* ===== Promo banner ===== */
@@ -776,13 +902,13 @@ footer {
   color: var(--line);
 }
 
-/* ===== Product grid (collections) ===== */
+/* ===== Product grid (collections + homepage previews) ===== */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   border-top: 1px solid var(--line);
   border-right: 1px solid var(--line);
-  margin-bottom: 90px;
+  margin-bottom: 0;
 }
 .product-grid .card {
   width: auto;
@@ -790,14 +916,79 @@ footer {
   border-left: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.product-grid .card .card-name {
-  min-height: 0;
+/* Dense breakpoints: 2 → 3 → 4 → 5 → 6 columns. */
+@media (min-width: 561px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 761px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 981px) {
+  .product-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+.collection-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+}
+.collection-head h1 {
+  font-size: clamp(20px, 2.4vw, 28px);
 }
 .collection-count {
   color: var(--mid);
   font-size: 13px;
-  margin-bottom: 30px;
   letter-spacing: 0.5px;
+}
+
+/* Sticky category chips — reachable while scrolling a long grid. */
+.filter-bar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 20;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+.filter-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.filter-chips::-webkit-scrollbar {
+  display: none;
+}
+.chip {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  padding: 9px 16px;
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.chip:hover {
+  border-color: var(--black);
+}
+.chip.active {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
 }
 
 /* ===== Product page ===== */
@@ -820,6 +1011,30 @@ footer {
 }
 .pg-media .sweep-sm {
   opacity: 0.55;
+}
+.pg-media img {
+  object-fit: cover;
+}
+.pg-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.pg-thumb {
+  width: 68px;
+  height: 85px;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: var(--off);
+  position: relative;
+  overflow: hidden;
+}
+.pg-thumb:hover {
+  border-color: var(--mid);
+}
+.pg-thumb.active {
+  border-color: var(--black);
 }
 .pg-brand {
   font-size: 11px;
@@ -860,27 +1075,15 @@ footer {
   letter-spacing: 1px;
   margin-bottom: 10px;
 }
-.opt-row {
+.opt-swatches {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 24px;
 }
-.opt-btn {
-  border: 1px solid var(--line);
-  padding: 10px 16px;
-  font-size: 13px;
-  font-weight: 700;
-  background: var(--white);
-  transition: border 0.2s, background 0.2s;
-}
-.opt-btn:hover {
-  border-color: var(--black);
-}
-.opt-btn.active {
-  background: var(--black);
-  color: var(--white);
-  border-color: var(--black);
+.opt-swatches .swatch {
+  width: 48px;
+  height: 60px;
 }
 .qty-row {
   display: flex;
@@ -961,6 +1164,7 @@ footer {
 .cart-thumb {
   width: 84px;
   height: 112px;
+  position: relative;
   background: var(--off);
   border: 1px solid var(--line);
   display: flex;
@@ -1103,9 +1307,6 @@ footer {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
   }
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .pg {
     grid-template-columns: 1fr;
     gap: 36px;
@@ -1143,15 +1344,42 @@ footer {
   .nl-form button {
     padding: 14px;
   }
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .wrap {
+    padding: 0 12px;
+  }
+  /* Keep the header at --header-h while making room for the logo + cart + menu. */
+  .header-inner {
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: 12px;
+  }
+  .header-inner > * {
+    flex: 0 0 auto;
+  }
+  .header-actions {
+    gap: 8px;
+  }
+  .hide-sm {
+    display: none;
+  }
+  section.block {
+    padding: 52px 0;
+  }
+  .card-body {
+    padding: 8px 8px 12px;
   }
   .card-name {
-    font-size: 13.5px;
-    min-height: 0;
+    font-size: 12px;
   }
   .card-price {
-    font-size: 14px;
+    font-size: 16px;
+  }
+  .card-swatches .swatch {
+    width: 34px;
+    height: 42px;
+  }
+  .swatch-more {
+    height: 42px;
   }
   .cart-row {
     grid-template-columns: 64px 1fr;

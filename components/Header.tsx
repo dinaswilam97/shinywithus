@@ -4,16 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { Icon } from "./Icons";
 import { useCart } from "@/context/CartContext";
+import { CATEGORIES } from "@/data/categories";
 
-const NAV_LINKS = [
-  { href: "/collections/clothing-women", label: "ملابس حريمي" },
-  { href: "/collections/clothing-men", label: "ملابس رجالي" },
-  { href: "/collections/makeup", label: "المكياج" },
-  { href: "/collections/skincare", label: "العناية بالبشرة" },
-  { href: "/collections/fragrance", label: "العطور" },
-  { href: "/collections/accessories", label: "إكسسوارات" },
-  { href: "/collections/sale", label: "تخفيضات" },
-];
+const NAV_LINKS = CATEGORIES.map((c) => ({
+  href: `/collections/${c.slug}`,
+  label: c.name,
+}));
 
 export function Header() {
   const { count } = useCart();
@@ -43,14 +39,15 @@ export function Header() {
           ))}
         </nav>
 
+        {/* `hide-sm`: on phones only the cart stays, so nothing gets pushed off-screen. */}
         <div className="header-actions">
-          <button className="icon-btn" aria-label="بحث">
+          <button className="icon-btn hide-sm" aria-label="بحث">
             <Icon name="search" size={18} />
           </button>
-          <button className="icon-btn" aria-label="حسابي">
+          <button className="icon-btn hide-sm" aria-label="حسابي">
             <Icon name="user" size={18} />
           </button>
-          <button className="icon-btn" aria-label="المفضلة">
+          <button className="icon-btn hide-sm" aria-label="المفضلة">
             <Icon name="heart" size={18} />
           </button>
           <Link href="/cart" className="icon-btn" aria-label="السلة" style={{ position: "relative" }}>

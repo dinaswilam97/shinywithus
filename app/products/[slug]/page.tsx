@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Icon } from "@/components/Icons";
-import { AddToCart } from "@/components/AddToCart";
 import { SectionHead } from "@/components/SectionHead";
 import { ProductScroller } from "@/components/ProductScroller";
-import {
-  formatPrice,
-  getCategoryMeta,
-  getProductBySlug,
-  getProductsByCategory,
-} from "@/data/products";
+import { ProductDetail } from "@/components/ProductDetail";
+import { getCategoryMeta } from "@/data/categories";
+import { getProductBySlug, getProductsByCategory } from "@/data/catalog";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = {
+  params: Promise<{ slug: string }>;
+  /** `?color=<slug>` set by the catalog card so the page opens on the tapped shade. */
+  searchParams: Promise<{ color?: string }>;
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -24,8 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const { color } = await searchParams;
   const product = getProductBySlug(slug);
   if (!product) notFound();
 
@@ -48,44 +48,8 @@ export default async function ProductPage({ params }: Props) {
         <span>{product.name}</span>
       </div>
 
-      <div className="pg">
-        <div className="pg-media">
-          <Icon
-            name={product.icon}
-            size={140}
-            strokeWidth={0.9}
-            style={{ opacity: 0.85 }}
-          />
-          <div className="sweep-sm" aria-hidden="true" />
-        </div>
-
-        <div>
-          <div className="pg-brand">{product.brand}</div>
-          <h1 className="pg-name">{product.name}</h1>
-          <div className="pg-price">
-            {product.oldPrice !== undefined && (
-              <del>{formatPrice(product.oldPrice)}</del>
-            )}
-            <span>{formatPrice(product.price)}</span>
-          </div>
-
-          <p className="pg-desc">{product.description}</p>
-
-          <AddToCart product={product} />
-
-          <div className="pg-meta">
-            <span>
-              <b>شحن سريع</b> — 2-5 أيام عمل
-            </span>
-            <span>
-              <b>دفع آمن</b> — عند الاستلام أو بالبطاقة
-            </span>
-            <span>
-              <b>استرجاع</b> — خلال 14 يوم
-            </span>
-          </div>
-        </div>
-      </div>
+      {/* key: remount per product so the selected color state never leaks across products. */}
+      <ProductDetail key={product.id} product={product} initialColor={color} />
 
       {related.length > 0 && (
         <section className="block">

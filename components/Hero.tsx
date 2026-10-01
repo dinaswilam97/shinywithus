@@ -3,18 +3,14 @@ export function Hero() {
     <section className="hero">
       <div className="hero-inner">
         <div>
-          <span className="hero-eyebrow">أزياء × جمال × لمعة مختلفة</span>
-          <h1>
-            خليكي دايمًا
-            <br />
-            <span className="shine-text">shiny with us</span>
-          </h1>
+          <span className="hero-eyebrow">مكياج × عناية × لمعة مختلفة</span>
+          <h1>جمالك يبان من أول لمسة</h1>
           <p className="lead">
-            من الملابس والإكسسوارات لأحدث منتجات المكياج والعناية بالبشرة — كل
-            اللي محتاجاه عشان تطلعي بأحسن نسخة منك، في مكان واحد.
+            تشكيلة مكياج SHEGLAM الأصلية - عيون، شفايف، بشرة وأكتر، بأسعار
+            تناسبك ودفع عند الاستلام
           </p>
           <div className="hero-ctas">
-            <a className="btn-solid" href="#bestsellers">
+            <a className="btn-solid" href="#categories">
               اتسوقي دلوقتي
             </a>
             <a className="btn-line" href="#categories">

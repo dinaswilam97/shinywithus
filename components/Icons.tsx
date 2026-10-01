@@ -34,6 +34,7 @@ export type IconName =
   | "brow"
   | "mascara"
   | "wand"
+  | "hair-brush"
   | "serum"
   | "jar"
   | "bottle"
@@ -170,6 +171,14 @@ const GLYPHS: Record<IconName, React.ReactNode> = {
       <path d="M7 3h10v3H7z" />
       <path d="M9 6v3h6V6" />
       <path d="M9 9h6l1.5 12h-9z" />
+    </>
+  ),
+  // Paddle hairbrush: bristles on top, rounded head, straight handle.
+  "hair-brush": (
+    <>
+      <path d="M8 7h8a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3z" />
+      <path d="M9.5 7V4.5M12 7V4.5M14.5 7V4.5" />
+      <path d="M12 15v6" />
     </>
   ),
   serum: (

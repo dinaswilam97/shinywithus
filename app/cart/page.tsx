@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Icon } from "@/components/Icons";
-import { formatPrice } from "@/data/products";
+import { formatPrice } from "@/data/format";
 import { useCart } from "@/context/CartContext";
 
 function itemsLabel(n: number) {
@@ -43,23 +44,38 @@ export default function CartPage() {
         <div className="cart-grid">
           <div className="cart-list">
             {items.map((item) => (
-              <div className="cart-row" key={`${item.slug}-${item.size}-${item.color}`}>
+              <div
+                className="cart-row"
+                key={`${item.slug}-${item.size ?? ""}-${item.color?.slug ?? ""}`}
+              >
                 <div className="cart-thumb">
-                  <Icon name={item.icon} size={34} strokeWidth={1.1} style={{ opacity: 0.85 }} />
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt=""
+                      fill
+                      sizes="84px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  ) : (
+                    <Icon name="bag" size={34} strokeWidth={1.1} style={{ opacity: 0.85 }} />
+                  )}
                 </div>
                 <div>
-                  <div className="cb">{item.brand}</div>
+                  {item.brand && <div className="cb">{item.brand}</div>}
                   <h4>{item.name}</h4>
                   {(item.size || item.color) && (
                     <div className="cv">
-                      {[item.size, item.color].filter(Boolean).join(" — ")}
+                      {[item.size, item.color?.name].filter(Boolean).join(" — ")}
                     </div>
                   )}
                   <div className="qty-mini">
                     <button
                       type="button"
                       aria-label="إنقاص الكمية"
-                      onClick={() => updateQty(item.slug, item.size, item.color, -1)}
+                      onClick={() =>
+                        updateQty(item.slug, item.size, item.color?.slug, -1)
+                      }
                     >
                       −
                     </button>
@@ -67,7 +83,9 @@ export default function CartPage() {
                     <button
                       type="button"
                       aria-label="زيادة الكمية"
-                      onClick={() => updateQty(item.slug, item.size, item.color, 1)}
+                      onClick={() =>
+                        updateQty(item.slug, item.size, item.color?.slug, 1)
+                      }
                     >
                       +
                     </button>
@@ -78,7 +96,7 @@ export default function CartPage() {
                   <button
                     className="cart-remove"
                     type="button"
-                    onClick={() => removeItem(item.slug, item.size, item.color)}
+                    onClick={() => removeItem(item.slug, item.size, item.color?.slug)}
                   >
                     إزالة
                   </button>

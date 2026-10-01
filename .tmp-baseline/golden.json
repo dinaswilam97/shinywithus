@@ -1,0 +1,437 @@
+[
+  {
+    "id": "LIP-072",
+    "category": "lips",
+    "folderNumber": "72",
+    "products": [
+      {
+        "sku": "LIP-072",
+        "productName": "SHEGLAM Line To Shine Peel-Off Lip Stain & Gloss Duo",
+        "colors": [
+          "Peach Mousse",
+          "Rose Latte",
+          "Pink Macaron",
+          "Cherry Cola",
+          "Berry Milkshake",
+          "Papaya Glaze",
+          "Toasted Almond",
+          "Mocha Cream",
+          "Brown Butter",
+          "Fig Cookie"
+        ],
+        "shadeCodes": [
+          "013",
+          "113",
+          "114",
+          "310",
+          "311",
+          "510",
+          "511",
+          "512",
+          "514",
+          "515"
+        ],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "LIP-060",
+    "category": "lips",
+    "folderNumber": "60",
+    "products": [
+      {
+        "sku": "LIP-060",
+        "productName": "SHEGLAM Marshmallow Puff Lip Blur Pen",
+        "colors": [
+          "Soft Bounce",
+          "High Key",
+          "Blush Whip"
+        ],
+        "shadeCodes": [
+          "032",
+          "111",
+          "136"
+        ],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "LIP-053",
+    "category": "lips",
+    "folderNumber": "53",
+    "products": [
+      {
+        "sku": "LIP-053",
+        "productName": "SHEGLAM True Stain Liquid Lip Liner",
+        "colors": [
+          "Plum Sauce",
+          "But First,Coffee"
+        ],
+        "shadeCodes": [
+          "112",
+          "505"
+        ],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "LIP-084",
+    "category": "lips",
+    "folderNumber": "84",
+    "products": [
+      {
+        "sku": "LIP-084",
+        "productName": "SHEGLAM Matte Allure Lipstick",
+        "colors": [
+          "Self-Made Babe",
+          "Adulting"
+        ],
+        "shadeCodes": [
+          "083",
+          "092"
+        ],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "EYE-004",
+    "category": "eyes",
+    "folderNumber": "4",
+    "products": [
+      {
+        "sku": "EYE-004",
+        "productName": "SHEGLAM The Everywhere 4-In-1 Liner Pen",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "EYE-048",
+    "category": "eyes",
+    "folderNumber": "48",
+    "products": [
+      {
+        "sku": "EYE-048-A",
+        "productName": "SHEGLAM Boldline Gel Liner Sharpener",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      },
+      {
+        "sku": "EYE-048-B",
+        "productName": "SHEGLAM Boldline Longwear Multi-Function Gel Liner",
+        "colors": [
+          "Azure Blue",
+          "Black",
+          "Burgundy",
+          "Chocolate",
+          "Hot Pink",
+          "Metallic Green",
+          "Silver",
+          "Violet",
+          "White"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      }
+    ]
+  },
+  {
+    "id": "FAC-024",
+    "category": "face",
+    "folderNumber": "24",
+    "products": [
+      {
+        "sku": "FAC-024-A",
+        "productName": "SHEGLAM Buttery Bling Highlight Stick-Rose Rush",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      },
+      {
+        "sku": "FAC-024-B",
+        "productName": "SHEGLAM Buttery Bliss Blush Stick",
+        "colors": [
+          "Chestnut Flush",
+          "Hush Hush",
+          "Love Cake",
+          "Painted Peony",
+          "Rose Ritual"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      }
+    ]
+  },
+  {
+    "id": "EYE-061",
+    "category": "eyes",
+    "folderNumber": "61",
+    "products": [
+      {
+        "sku": "EYE-061-A",
+        "productName": "SHEGLAM All-In-One 24K Multi-Effect Mascara",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      },
+      {
+        "sku": "EYE-061-B",
+        "productName": "SHEGLAM All-In-One Volume & Length Mascara",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": true,
+        "reviewNote": "possible unlabeled default shade — verify manually"
+      },
+      {
+        "sku": "EYE-061-C",
+        "productName": "SHEGLAM All-In-One Volume & Length Mascara",
+        "colors": [
+          "Washable Black",
+          "Waterproof Blue",
+          "Waterproof Macchiato"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      }
+    ]
+  },
+  {
+    "id": "LIP-091",
+    "category": "lips",
+    "folderNumber": "91",
+    "products": [
+      {
+        "sku": "LIP-091",
+        "productName": "SHEGLAM Pout Pillow Cushion Lip Gloss",
+        "colors": [
+          "K.O.",
+          "Sweet Dreamz",
+          "40 Winks"
+        ],
+        "shadeCodes": [],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "LIP-001",
+    "category": "lips",
+    "folderNumber": "1",
+    "products": [
+      {
+        "sku": "LIP-001-A",
+        "productName": "SHEGLAM Glam 101 Lipstick & Liner Duo",
+        "colors": [
+          "Berry Whip",
+          "Cherry Fudge",
+          "Macaron",
+          "Praline Pie",
+          "Deep Caramel"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      },
+      {
+        "sku": "LIP-001-B",
+        "productName": "SHEGLAM Glam 101 Sheer Tinted Lipstick & Liner Duo",
+        "colors": [
+          "Blueberry Jam",
+          "Cherry Glaze",
+          "Cinna-Swirl"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      }
+    ]
+  },
+  {
+    "id": "LIP-014",
+    "category": "lips",
+    "folderNumber": "14",
+    "products": [
+      {
+        "sku": "LIP-014-A",
+        "productName": "SHEGLAM Pout-Perfect Shimmer Lip Plumper",
+        "colors": [
+          "Gold Rush",
+          "Pink Flamingo"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      },
+      {
+        "sku": "LIP-014-B",
+        "productName": "SHEGLAM Pout-Perfect Shine Lip Plumper",
+        "colors": [
+          "First Crush",
+          "Hot Cocoa",
+          "In Bloom",
+          "Mahogany Magic",
+          "Peachy Keen",
+          "Pink Flamingo",
+          "Sepia Kiss",
+          "Spring Fever"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      }
+    ]
+  },
+  {
+    "id": "EYE-029",
+    "category": "eyes",
+    "folderNumber": "29",
+    "products": [
+      {
+        "sku": "EYE-029-A",
+        "productName": "SHEGLAM Coffee Date Palette",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      },
+      {
+        "sku": "EYE-029-B",
+        "productName": "SHEGLAM Desert Hues Palette",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      },
+      {
+        "sku": "EYE-029-C",
+        "productName": "SHEGLAM Mauve Mood Palette",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      },
+      {
+        "sku": "EYE-029-D",
+        "productName": "SHEGLAM Peach Perfection Palette",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      },
+      {
+        "sku": "EYE-029-E",
+        "productName": "SHEGLAM Sahara Heat Palette",
+        "colors": [
+          "default"
+        ],
+        "shadeCodes": [],
+        "needsReview": true
+      }
+    ]
+  },
+  {
+    "id": "FAC-003",
+    "category": "face",
+    "folderNumber": "3",
+    "products": [
+      {
+        "sku": "FAC-003",
+        "productName": "SHEGLAM Cheek & Lip Cream Stack",
+        "colors": [
+          "Apricot Dream",
+          "Very Cherry"
+        ],
+        "shadeCodes": [],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "HAI-009",
+    "category": "hair",
+    "folderNumber": "9",
+    "products": [
+      {
+        "sku": "HAI-009",
+        "productName": "SHEGLAM Glass Lock Air Gloss",
+        "colors": [
+          "High Key",
+          "Strawberry Milk"
+        ],
+        "shadeCodes": [],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "LIP-038",
+    "category": "lips",
+    "folderNumber": "38",
+    "products": [
+      {
+        "sku": "LIP-038",
+        "productName": "SHEGLAM Glaze Daze Lip Gloss",
+        "colors": [
+          "Apple Spice",
+          "Jammy"
+        ],
+        "shadeCodes": [],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "LIP-040",
+    "category": "lips",
+    "folderNumber": "40",
+    "products": [
+      {
+        "sku": "LIP-040",
+        "productName": "The Matrix Resurrections  SHEGLAM Slowmo Lip Gloss",
+        "colors": [
+          "Phase Shift",
+          "Super Speed",
+          "Telekinesis"
+        ],
+        "shadeCodes": [],
+        "needsReview": false
+      }
+    ]
+  },
+  {
+    "id": "LIP-041",
+    "category": "lips",
+    "folderNumber": "41",
+    "products": [
+      {
+        "sku": "LIP-041",
+        "productName": "Harry Potter™ X SHEGLAM Magic Elixir Lip Gloss",
+        "colors": [
+          "Amortentia™",
+          "Draught Of Living Death™",
+          "Felix Felicis™",
+          "Polyjuice Potion™"
+        ],
+        "shadeCodes": [],
+        "needsReview": false
+      }
+    ]
+  }
+]
